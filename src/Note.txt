@@ -1,0 +1,11 @@
+Start the website
+
+1. npm run dev
+2. inside the /backend. npm start
+
+IMPORTANT
+1. Never expose your .env file (cd src/backend/.env): Ensure it’s kept secure and out of public repositories, as it contains sensitive information.
+
+
+JWT
+1. https://jwt.io/: To decode your accessToken and refreshToken. Check id, email, expriation of the token.

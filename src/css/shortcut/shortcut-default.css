@@ -1,0 +1,222 @@
+
+
+.shortcut-button-create {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  min-height: 48px;
+  border-radius: var(--border-radius);
+}
+
+.shortcut-button-create {
+  justify-content: center;
+  background-color: var(--container-color-layer-3);
+  color: var(--color-primary-light);
+}
+
+.shortcut-button-create:hover {
+  background-color: var(--container-color-layer-4);
+  cursor: pointer;
+}
+
+.shortcut-button-create:active {
+  background-color: var(--container-color-layer-3); /* Darker background when clicked */
+  color: var(--color-muted-light);
+}
+
+.shortcut-button-profile {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--border-radius);
+}
+
+
+
+.shortcut-button-profile:hover {
+  color: var(--color-primary-light);
+  cursor: pointer;
+}
+
+
+
+
+.shortcut-button-profile-picture {
+  width: 32px;
+  height: 32px;
+  background-color: var(--container-color-layer-4);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.shortcut-button-profile-text {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.shortcut-button-profile-text-realname,
+.shortcut-button-profile-text-username {
+  display: flex;
+  height: 50%;
+  align-items: center;
+  color: var(--color-primary-light);
+}
+
+.shortcut-button-profile-text-username {
+  font-size: var(--font-size--1);
+}
+
+.shortcut-button-circle-notif {
+  display: flex;
+  height: 24px;
+  width: 24px;
+  justify-content: center;
+  align-items: center;  
+}
+
+.shortcut-logo {
+  display: flex;
+  box-sizing: border-box;
+  align-items: center;
+  width: 100%;
+  height: 48px;
+  margin: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  font-size: 40px;
+  font-weight: 900;
+}
+
+.highlight-button {
+  color: var(--color-primary-light);
+
+}
+
+.create-icon {
+  fill: var(--color-primary-light);
+}
+
+.button-default-logoutConfirmation {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  min-height: 48px;
+  border-radius: var(--border-radius);
+  justify-content: space-around;
+  gap: 2px;
+}
+
+.logout-confirm-button {
+  background-color: var(--container-color-layer-3);
+  border: 1px solid transparent;
+  color: var(--color-danger);
+  border-radius: var(--border-radius);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-normal);
+  height: 100%;
+  width: 100%;
+}
+
+.logout-cancel-button {
+  background-color: var(--container-color-layer-3);
+  border: 1px solid transparent;
+  color: var(--color-muted-light);
+  border-radius: var(--border-radius);
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-normal);
+  color: var(--color-primary-light);
+  height: 100%;
+  width: 100%;
+}
+
+.logout-confirm-button:hover {
+  background-color: var(--container-color-layer-4);
+  cursor: pointer;
+}
+
+.logout-cancel-button:hover {
+  background-color: var(--container-color-layer-4);
+  cursor: pointer;
+}
+
+.logout-confirm-button:active {
+  background-color: var(--container-color-layer-3); /* Darker background when clicked */
+}
+
+.logout-cancel-button:active {
+  background-color: var(--container-color-layer-3); /* Darker background when clicked */
+}
+
+.button-mainLogo {
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: center;
+  min-height: 48px;
+  border-radius: var(--border-radius);
+}
+
+.mainLogo-container {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 48px;
+}
+
+.mainLogo {
+  fill: var(--color-primary-light);
+  transition: transform 0.3s ease, fill 0.3s ease; /* Adds smooth scaling and color transition */
+  cursor: pointer;
+}
+
+.mainLogo:hover {
+  transform: scale(1.2); /* Slightly enlarges the logo */
+}
+
+.mainLogo:active {
+  transform: scale(1); /* Slightly enlarges the logo */
+}
+
+.mainLogo2-container {
+  display: flex;
+  box-sizing: border-box;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: max-content;
+}
+
+.mainLogo2 {
+  fill: var(--color-primary-light);
+  transition: transform 0.3s ease, fill 0.3s ease; /* Adds smooth scaling and color transition */
+  cursor: pointer;
+}
+
+.mainLogo2:hover {
+  transform: scale(1.2); /* Slightly enlarges the logo */
+}
+
+.mainLogo:active {
+  transform: scale(1); /* Slightly enlarges the logo */
+}
+
+/* For the Create button text */
+.button-default.highlight-button {
+  color: var(--color-primary-light); /* Replace with your desired text color */
+}
+
+/* For the Create button icon */
+.button-default.highlight-button .button-logo path {
+  fill: var(--color-primary-light); /* Replace with your desired icon color */
+}
+
