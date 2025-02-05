@@ -779,7 +779,7 @@ app.get("/user", authenticateToken, async (req, res) => {
   }
 });
 
-app.get("/user-details", async (req, res) => {
+app.get("/user-details", authenticateToken, async (req, res) => {
   const userId = req.cookies.userId;
 
   if (!userId) {
@@ -787,7 +787,7 @@ app.get("/user-details", async (req, res) => {
   }
 
   try {
-    const sql = "SELECT first_name, last_name, username FROM users WHERE id = ?";
+    const sql = "SELECT id, first_name, last_name, username, email, birthdate, gender, created_at FROM users WHERE id = ?";
     const userResults = await dbQuery(sql, [userId]);
 
     if (userResults.length > 0) {
