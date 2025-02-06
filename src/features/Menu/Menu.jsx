@@ -4,6 +4,8 @@ import './Menu.css';
 import axiosInstance from '../../api/axiosConfig';
 import Cookies from "js-cookie";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Menu() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -17,7 +19,7 @@ function Menu() {
       }
 
       try {
-        const response = await axiosInstance.get("http://localhost:8081/user-details");
+        const response = await axiosInstance.get(`${API_URL}/user-details`);
         setUserDetails(response.data);
       } catch (error) {
         console.error("Failed to fetch user details:", error);
@@ -83,7 +85,7 @@ function Menu() {
     console.log("Attempting to log out..."); // Add this line for debugging
     try {
       // Logout request to backend
-      await axiosInstance.post("http://localhost:8081/logout");
+      await axiosInstance.post(`${API_URL}/logout`);
       // Navigate and reload the page (optional)
       navigate("/");
       window.location.reload();

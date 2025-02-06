@@ -4,6 +4,8 @@ import InputValidation from '../../utils/InputValidation';
 import axios from 'axios';
 import { handleBlur, handleFocus, handleInput, handleInputDate } from '../../utils/InputHandler';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function CreateAccount() {
   // State management for form values and errors
   const [errors, setErrors] = useState({});
@@ -48,7 +50,7 @@ function CreateAccount() {
     // Step 2: Check if username and email are available on the server
     try {
       const availabilityCheck = await axios.post(
-        "http://localhost:8081/check-availability",
+        `${API_URL}/check-availability`,
         {
           username: values.username,
           email: values.email,
@@ -77,7 +79,7 @@ function CreateAccount() {
     try {
       navigate("/verification")
       const accountRes = await axios.post(
-        "http://localhost:8081/createaccount",
+        `${API_URL}/createaccount`,
         values
       );
       console.log("Account creation response:", accountRes.data);

@@ -4,6 +4,8 @@ import axios from 'axios';
 import { handleBlur, handleFocus, handleInput } from '../../utils/InputHandler';
 import InputValidation from '../../utils/InputValidation';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function ForgotPassword() {
   // State management for form values and errors
   const [errors, setErrors] = useState({});
@@ -41,7 +43,7 @@ function ForgotPassword() {
     }
 
     try {
-      const response = await axios.post('http://localhost:8081/check-email', { email: values.email });
+      const response = await axios.post(`${API_URL}/check-email`, { email: values.email });
       
       if (response.data.success) {
         setStep(2);  // Move to the next step if the email is valid
@@ -74,7 +76,7 @@ function ForgotPassword() {
     }
 
     try {
-      const response = await axios.post('http://localhost:8081/fp-verifycode', {
+      const response = await axios.post(`${API_URL}/fp-verifycode`, {
         email: values.email,
         verificationCode: values.verificationCode,
       });
@@ -113,7 +115,7 @@ function ForgotPassword() {
     }
 
     try {
-      const response = await axios.post('http://localhost:8081/reset-password', {
+      const response = await axios.post(`${API_URL}/reset-password`, {
         email: values.email,
         password: values.password,
       });

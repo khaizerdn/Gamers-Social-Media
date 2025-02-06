@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CodeValidation from './CodeValidation';
 import axios from 'axios';
-import { handleBlur, handleFocus, handleInput } from '../../utils/inputHandler';
+import { handleBlur, handleFocus, handleInput } from '../../utils/InputHandler';
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 function Verification() {
   const [errors, setErrors] = useState({});
@@ -31,7 +33,7 @@ function Verification() {
     const email = sessionStorage.getItem('email');
     if (email) {
       // Trigger your resend verification code functionality here
-      axios.post('http://localhost:8081/resend-code', { email })
+      axios.post(`${API_URL}/resend-code`, { email })
         .then((response) => {
           console.log("Verification code resent:", response.data);
         })
@@ -81,7 +83,7 @@ function Verification() {
         email: email,
       });
 
-      const response = await axios.post('http://localhost:8081/verify-account', {
+      const response = await axios.post(`${API_URL}/verify-account`, {
         verificationCode: values.verificationCode,
         email: email,
       });
