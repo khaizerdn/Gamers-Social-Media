@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import '../../css/access/access.css';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from '../../backend/node_modules/axios';
+import axios from 'axios';
 import { handleBlur, handleFocus, handleInput } from '../../utils/inputHandler';
 import inputValidation from '../../utils/inputValidation';
 

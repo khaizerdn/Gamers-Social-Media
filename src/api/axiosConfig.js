@@ -1,4 +1,4 @@
-import axios from '../backend/node_modules/axios';
+import axios from 'axios';
 
 // Create an axios instance
 const axiosInstance = axios.create({

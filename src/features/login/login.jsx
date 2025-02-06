@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import '../../css/access/access.css';
 import { Link, useNavigate } from 'react-router-dom';
 import Validation from "./login-validation";
-import axios from '../../backend/node_modules/axios';
+import axios from 'axios';
 
 function Login({ setIsLoggedIn }) {  // Accept setIsLoggedIn as a prop
   const [values, setValues] = useState({

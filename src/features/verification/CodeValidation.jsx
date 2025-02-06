@@ -1,4 +1,4 @@
-function VerificationValidation(values) {
+function CodeValidation(values) {
   let errors = {};
 
   // Verification Code Validation
@@ -10,4 +10,4 @@ function VerificationValidation(values) {
   return errors; // Return the errors object
 }
 
-export default VerificationValidation;
+export default CodeValidation;

@@ -1,24 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import axios from './backend/node_modules/axios';
+import axios from 'axios';
 import ScrollRestoration from './utils/scrollrestoration';
-import ShortcutDefault from './jsx/shortcut/shortcut-default';
-import ComplementaryDefault from './jsx/complementary/complementary-default';
-import ContentHome from './jsx/content/content-home';
-import ContentNotifications from './jsx/content/content-notifications';
-import ContentTrends from './jsx/content/content-trends';
-import ContentTournament from './jsx/content/content-tournament';
-import ContentScrimmage from './jsx/content/content-scrimmage';
-import ContentChats from './jsx/content/content-chats';
-import ContentFriends from './jsx/content/content-friends';
-import ContentTeams from './jsx/content/content-teams';
-import ContentClubs from './jsx/content/content-clubs';
-import ContentPages from './jsx/content/content-pages';
-import ContentSettings from './jsx/content/content-settings';
-import Login from './jsx/access/login';
-import ForgotPassword from './jsx/access/forgotpassword';
-import CreateAccount from './jsx/access/createaccount';
-import Verification from './jsx/access/verification';
+import ShortcutDefault from './features/shortcut/shortcut-default';
+import ComplementaryDefault from './features/complementary/complementary-default';
+import ContentHome from './features/content/content-home';
+import ContentNotifications from './features/content/content-notifications';
+import ContentTrends from './features/content/content-trends';
+import ContentTournament from './features/content/content-tournament';
+import ContentScrimmage from './features/content/content-scrimmage';
+import ContentChats from './features/content/content-chats';
+import ContentFriends from './features/content/content-friends';
+import ContentTeams from './features/content/content-teams';
+import ContentClubs from './features/content/content-clubs';
+import ContentPages from './features/content/content-pages';
+import ContentSettings from './features/content/content-settings';
+import Login from './features/login/login';
+import ForgotPassword from './features/forgotpassword/forgotpassword';
+import CreateAccount from './features/signup/createaccount';
+import Verification from './features/verification/Verification';
 
 // Utility function to check if the user is logged in by calling the backend
 const checkLoginStatus = async () => {

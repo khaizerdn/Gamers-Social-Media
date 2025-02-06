@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import '../../css/access/access.css';
 import { Link, useNavigate } from 'react-router-dom';
-import inputValidation from '../../utils/inputValidation';
-import axios from '../../backend/node_modules/axios';
+import CodeValidation from './CodeValidation';
+import axios from 'axios';
 import { handleBlur, handleFocus, handleInput } from '../../utils/inputHandler';
 
 function Verification() {
@@ -60,7 +59,7 @@ function Verification() {
     event.preventDefault();
 
     // Run client-side validation
-    const validationErrors = inputValidation(values);
+    const validationErrors = CodeValidation(values);
 
     // If there are validation errors, stop submission
     if (Object.keys(validationErrors).length > 0) {
@@ -123,7 +122,7 @@ function Verification() {
                   value={values.verificationCode}
                   onChange={(e) => handleInput(e, setValues)}
                   onFocus={() => handleFocus('verificationCode', setFocused)}
-                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, CodeValidation)}
                 />
               </div>
             </div>
