@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import '../../css/shortcut/shortcut-default.css';
+import './shortcut-default.css';
 import axiosInstance from '../../api/axiosConfig';
 import Cookies from "js-cookie";
 
