@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import Validation from "./login-validation";
+import Validation from "./LoginValidation";
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 function Login({ setIsLoggedIn }) {  // Accept setIsLoggedIn as a prop
+
   const [values, setValues] = useState({
     email: "",
     password: ""
@@ -20,9 +23,6 @@ function Login({ setIsLoggedIn }) {  // Accept setIsLoggedIn as a prop
   const handleInput = (event) => {
     setValues(prev => ({ ...prev, [event.target.name]: event.target.value }));
   };
-
-  
-
   
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,8 +33,7 @@ function Login({ setIsLoggedIn }) {  // Accept setIsLoggedIn as a prop
   
     if (Object.keys(validationErrors).length === 0) {
       try {
-        await axios.post("http://localhost:8081/login", values, { withCredentials: true });
-  
+        await axios.post(`${API_URL}/login`, values, { withCredentials: true });
         setIsLoggedIn(true);
         navigate("/");
       } catch (err) {
@@ -42,17 +41,11 @@ function Login({ setIsLoggedIn }) {  // Accept setIsLoggedIn as a prop
       }
     }
   };
-  
-  
-
-
-
-
 
   return (
     <div className="container-access">
       <div className="access">
-        <form action="" onSubmit={handleSubmit} autoComplete="on" noValidate>
+        <form action="" onSubmit={handleSubmit} autoComplete="off" noValidate>
           <div className="shortcut-logo-mainlogo">LOGO HERE</div>
           <div className="input-section-one">
           <div className='input-section-one-group'>

@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import '../../App.css';
-import '../../css/complementary/complementary-default.css';
 
 const ContentHome = () => {
   const [isDropdownOpen, setDropdownOpen] = useState(false);

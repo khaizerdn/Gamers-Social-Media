@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import inputValidation from '../../utils/inputValidation';
+import InputValidation from '../../utils/InputValidation';
 import axios from 'axios';
-import { handleBlur, handleFocus, handleInput, handleInputDate } from '../../utils/inputHandler';
-
+import { handleBlur, handleFocus, handleInput, handleInputDate } from '../../utils/InputHandler';
 
 function CreateAccount() {
   // State management for form values and errors
@@ -44,7 +43,7 @@ function CreateAccount() {
     event.preventDefault();
 
     // Step 1: Client-side validation
-    const validationErrors = inputValidation(values);
+    const validationErrors = InputValidation(values);
 
     // Step 2: Check if username and email are available on the server
     try {
@@ -95,7 +94,7 @@ function CreateAccount() {
   return (
     <div className="container-access">
       <div className="access">
-        <form onSubmit={handleSubmit} autoComplete="on" noValidate>
+        <form onSubmit={handleSubmit} autoComplete="off" noValidate>
           <div className="title">Create Account</div>
           {/* First Name */}
           <div className="input-section-one">
@@ -109,7 +108,7 @@ function CreateAccount() {
                   value={values.firstName}
                   onChange={(e) => handleInput(e, setValues)}
                   onFocus={() => handleFocus('firstName', setFocused)}
-                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                 />
               </div>
             </div>
@@ -128,7 +127,7 @@ function CreateAccount() {
                   value={values.lastName}
                   onChange={(e) => handleInput(e, setValues)}
                   onFocus={() => handleFocus('lastName', setFocused)}
-                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                 />
               </div>
             </div>
@@ -147,7 +146,7 @@ function CreateAccount() {
                     value={values.gender}
                     onChange={(e) => handleInput(e, setValues)}
                     onFocus={() => handleFocus('gender', setFocused)}
-                    onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                    onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                   >
                     <option value="" disabled hidden></option>
                     <option value="male">Male</option>
@@ -171,7 +170,7 @@ function CreateAccount() {
                   value={values.birthdate}
                   onChange={(e) => handleInputDate(e, setValues)}
                   onFocus={() => handleFocus('birthdate', setFocused)}
-                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                 />
               </div>
             </div>
@@ -190,7 +189,7 @@ function CreateAccount() {
                   value={values.username}
                   onChange={(e) => handleInput(e, setValues)}
                   onFocus={() => handleFocus('username', setFocused)}
-                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                 />
               </div>
             </div>
@@ -210,7 +209,7 @@ function CreateAccount() {
                   value={values.email}
                   onChange={(e) => handleInput(e, setValues)}
                   onFocus={() => handleFocus('email', setFocused)}
-                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                 />
               </div>
             </div>
@@ -230,7 +229,7 @@ function CreateAccount() {
                   value={values.password}
                   onChange={(e) => handleInput(e, setValues)}
                   onFocus={() => handleFocus('password', setFocused)}
-                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                 />
                 <div className="toggle-password-icon" onClick={togglePasswordVisibility}>
                   {showPassword ? (
@@ -262,7 +261,7 @@ function CreateAccount() {
                   value={values.confirmPassword}
                   onChange={(e) => handleInput(e, setValues)}
                   onFocus={() => handleFocus('confirmPassword', setFocused)}
-                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                  onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                 />
               </div>
             </div>

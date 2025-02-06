@@ -2,23 +2,23 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import ScrollRestoration from './utils/scrollrestoration';
-import ShortcutDefault from './features/shortcut/shortcut-default';
-import ComplementaryDefault from './features/complementary/complementary-default';
-import ContentHome from './features/content/content-home';
-import ContentNotifications from './features/content/content-notifications';
-import ContentTrends from './features/content/content-trends';
-import ContentTournament from './features/content/content-tournament';
-import ContentScrimmage from './features/content/content-scrimmage';
-import ContentChats from './features/content/content-chats';
-import ContentFriends from './features/content/content-friends';
-import ContentTeams from './features/content/content-teams';
-import ContentClubs from './features/content/content-clubs';
-import ContentPages from './features/content/content-pages';
-import ContentSettings from './features/content/content-settings';
-import Login from './features/login/login';
-import ForgotPassword from './features/forgotpassword/forgotpassword';
-import CreateAccount from './features/signup/createaccount';
-import Verification from './features/verification/Verification';
+import Menu from './features/Shortcut/Menu';
+import Complementary from './features/Complementary/Complementary';
+import ContentHome from './features/Content/content-home';
+import ContentNotifications from './features/Content/content-notifications';
+import ContentTrends from './features/Content/content-trends';
+import ContentTournament from './features/Content/content-tournament';
+import ContentScrimmage from './features/Content/content-scrimmage';
+import ContentChats from './features/Content/content-chats';
+import ContentFriends from './features/Content/content-friends';
+import ContentTeams from './features/Content/content-teams';
+import ContentClubs from './features/Content/content-clubs';
+import ContentPages from './features/Content/content-pages';
+import ContentSettings from './features/Content/content-settings';
+import Login from './features/Login/Login';
+import ForgotPassword from './features/ForgotPassword/forgotpassword';
+import CreateAccount from './features/CreateAccount/createaccount';
+import Verification from './features/Verification/Verification';
 
 // Utility function to check if the user is logged in by calling the backend
 const checkLoginStatus = async () => {
@@ -81,7 +81,7 @@ function App() {
               <div className="container">
                 <div className="container-shortcut">
                   <div className="shortcut">
-                    <ShortcutDefault setDropdownLabel={setDropdownLabel} />
+                    <Menu setDropdownLabel={setDropdownLabel} />
                   </div>
                 </div>
                 
@@ -106,7 +106,7 @@ function App() {
                 
                 <div className="container-complementary">
                   <div className="complementary">
-                    <ComplementaryDefault />
+                    <Complementary />
                   </div>
                 </div>
               </div>

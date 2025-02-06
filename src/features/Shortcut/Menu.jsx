@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import './shortcut-default.css';
+import './Menu.css';
 import axiosInstance from '../../api/axiosConfig';
 import Cookies from "js-cookie";
 
-
-function ShortcutDefault() {
+function Menu() {
   const navigate = useNavigate();
   const location = useLocation();
   const [userDetails, setUserDetails] = useState(null);
@@ -190,4 +189,4 @@ function ShortcutDefault() {
   );
 }
 
-export default ShortcutDefault;
+export default Menu;

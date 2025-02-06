@@ -1,6 +1,6 @@
-import '../../css/complementary/complementary-default.css';
+import './Complementary.css';
 
-function ComplementaryDefault() {
+function Complementary() {
   return (
     <>
       <div className="section">
@@ -139,4 +139,4 @@ function ComplementaryDefault() {
   )
 }
 
-export default ComplementaryDefault;
+export default Complementary;

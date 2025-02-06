@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { handleBlur, handleFocus, handleInput } from '../../utils/inputHandler';
-import inputValidation from '../../utils/inputValidation';
+import { handleBlur, handleFocus, handleInput } from '../../utils/InputHandler';
+import InputValidation from '../../utils/InputValidation';
 
 function ForgotPassword() {
   // State management for form values and errors
@@ -34,7 +34,7 @@ function ForgotPassword() {
     event.preventDefault();
 
     // Validate email input
-    const validationErrors = inputValidation({ email: values.email });
+    const validationErrors = InputValidation({ email: values.email });
     if (validationErrors.email) {
       setErrors(validationErrors);
       return;
@@ -67,7 +67,7 @@ function ForgotPassword() {
     event.preventDefault();
 
     // Validate code input
-    const validationErrors = inputValidation({ verificationCode: values.verificationCode });
+    const validationErrors = InputValidation({ verificationCode: values.verificationCode });
     if (validationErrors.verificationCode) {
       setErrors(validationErrors);
       return;
@@ -106,7 +106,7 @@ function ForgotPassword() {
     event.preventDefault();
 
     // Validate password and confirmPassword
-    const validationErrors = inputValidation(values);
+    const validationErrors = InputValidation(values);
     if (validationErrors.password || validationErrors.confirmPassword) {
       setErrors(validationErrors);
       return;
@@ -145,7 +145,7 @@ function ForgotPassword() {
                     value={values.email}
                     onChange={(e) => handleInput(e, setValues)}
                     onFocus={() => handleFocus('email', setFocused)}
-                    onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                    onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                   />
                 </div>
               </div>
@@ -173,7 +173,7 @@ function ForgotPassword() {
                     value={values.verificationCode}
                     onChange={(e) => handleInput(e, setValues)}
                     onFocus={() => handleFocus('verificationCode', setFocused)}
-                    onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                    onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                   />
                 </div>
               </div>
@@ -198,7 +198,7 @@ function ForgotPassword() {
                     value={values.password}
                     onChange={(e) => handleInput(e, setValues)}
                     onFocus={() => handleFocus('password', setFocused)}
-                    onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                    onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                   />
                   <div className="toggle-password-icon" onClick={togglePasswordVisibility}>
                     {showPassword ? (
@@ -226,7 +226,7 @@ function ForgotPassword() {
                     value={values.confirmPassword}
                     onChange={(e) => handleInput(e, setValues)}
                     onFocus={() => handleFocus('confirmPassword', setFocused)}
-                    onBlur={(e) => handleBlur(e, values, setFocused, setErrors, inputValidation)}
+                    onBlur={(e) => handleBlur(e, values, setFocused, setErrors, InputValidation)}
                   />
                 </div>
               </div>

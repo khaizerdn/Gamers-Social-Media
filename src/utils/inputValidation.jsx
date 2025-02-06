@@ -77,11 +77,6 @@ function inputValidation(values) {
     }
   }
 
-  // Verification Code Validation
-  if (values.verificationCode !== undefined && !values.verificationCode) {
-    error.verificationCode = "Verification code should not be empty.";
-  }
-
   return error;
 }
 
