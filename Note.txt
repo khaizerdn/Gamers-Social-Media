@@ -1,0 +1,1 @@
+# Study about snowflake id generation
