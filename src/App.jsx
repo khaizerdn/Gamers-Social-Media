@@ -20,11 +20,13 @@ import ForgotPassword from './features/ForgotPassword/forgotpassword';
 import CreateAccount from './features/CreateAccount/createaccount';
 import Verification from './features/Verification/Verification';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // Utility function to check if the user is logged in by calling the backend
 const checkLoginStatus = async () => {
   try {
     const response = await axios.post(
-      "http://localhost:8081/verify-refresh-token", // Adjust the backend URL
+      `${API_URL}/verify-refresh-token`, // Adjust the backend URL
       {}, // No need to send data, just checking the refresh token
       { withCredentials: true } // Ensures cookies are sent with the request
     );
