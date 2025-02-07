@@ -13,7 +13,7 @@ dotenv.config();
 const app = express();
 app.use(
   cors({
-    origin: 'http://localhost:5173',  // Your frontend URL
+    origin: process.env.FRONTEND_URL,  // Your frontend URL
     credentials: true,                // Allow cookies and credentials
   })
 );
@@ -42,13 +42,6 @@ const authenticateToken = (req, res, next) => {
     next();
   });
 };
-
-
-
-// Load environment variables from .env file
-
-
-const tempUserData = {};
 
 // Create MySQL connection pool for better scalability
 const db = mysql.createPool({
@@ -250,13 +243,6 @@ app.post("/createaccount", async (req, res) => {
     res.status(500).send("Error creating account. Please try again.");
   }
 });
-
-
-
-
-
-
-
 
 app.post("/check-availability", async (req, res) => {
   const { username, email } = req.body;
