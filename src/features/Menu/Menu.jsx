@@ -1,33 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import './Menu.css';
-import axiosInstance from '../../api/axiosConfig';
-import Cookies from "js-cookie";
 
-const API_URL = import.meta.env.VITE_API_URL;
+import useUserData from '../../utils/useUserData';
+import useLogout from '../../utils/useLogout';
 
 function Menu() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [userDetails, setUserDetails] = useState(null);
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      const userId = Cookies.get("userId");
-      if (!userId) {
-        console.error("User ID not found in cookies");
-        return;
-      }
-
-      try {
-        const response = await axiosInstance.get(`${API_URL}/user-details`);
-        setUserDetails(response.data);
-      } catch (error) {
-        console.error("Failed to fetch user details:", error);
-      }
-    };
-
-    fetchUserDetails();
-  }, []);
+  const userData = useUserData();
+  const logout = useLogout();
 
   const [selectedButton, setSelectedButton] = useState(() => {
     return localStorage.getItem('selectedButton') || 'home';
@@ -71,31 +53,21 @@ function Menu() {
     }
   };
 
+  const handleProfileClick = () => {
+    if (userData) {
+      navigate(`/${userData.username}`);
+    }
+  };
+
   const handleButtonClick = (button) => {
     if (button === 'logout') {
-      handleLogout()
+      logout()
     } else {
       setSelectedButton(button);
       localStorage.setItem('selectedButton', button);
       navigate(`/${button}`);
     }
   };
-
-  const handleLogout = async () => {
-    console.log("Attempting to log out..."); // Add this line for debugging
-    try {
-      // Logout request to backend
-      await axiosInstance.post(`${API_URL}/logout`);
-      // Navigate and reload the page (optional)
-      navigate("/");
-      window.location.reload();
-
-    } catch (error) {
-      console.error("Logout failed:", error);
-    }
-  };
-
-
 
   const createShortcutButton = (buttonName, iconPath, labelText, extraClassName = '') => (
     <div
@@ -139,22 +111,21 @@ function Menu() {
           </div>
         </div>
 
-        <div className="button-default">
-        {userDetails ? (
-          <>
-          <div className="button-logo-container">
-          <img src='' className="shortcut-button-profile-picture" />
+        <div className="button-default" onClick={handleProfileClick}>
+          {userData ? (
+            <>
+              <div className="button-logo-container">
+                <img src='' className="shortcut-button-profile-picture" />
+              </div>
+              <div className="shortcut-button-profile-text">
+                <div className="shortcut-button-profile-text-realname">{userData.first_name} {userData.last_name}</div>
+                <div className='button-text-other'>{userData.username}</div>
+              </div>
+            </>
+          ) : (
+            <div>Loading user details...</div>
+          )}
         </div>
-        <div className="shortcut-button-profile-text">
-          <div className="shortcut-button-profile-text-realname">{userDetails.first_name} {userDetails.last_name}</div><div className='button-text-other'>{userDetails.username}</div>
-          {/* In-game, Idle, Online, Invisible,  */}
-          <div className="shortcut-button-profile-text-username"></div>
-        </div>
-        </>
-        ) : (
-          <div>Loading user details...</div>
-        )}
-      </div>
         {createShortcutButton('create', 'm21,12c0,1.11-.89,2-2,2h-5.01v5.01c0,1.11-.89,2-2,2s-2-.89-2-2v-5.01h-5.01c-1.1,0-2-.89-2-2s.9-2,2-2h5.01v-5.01c0-1.1.89-2,2-2s2,.9,2,2v5.01h5.01c1.11,0,2,.89,2,2Z', 'Create'/*, 'highlight-button'*/)}
         {createShortcutButton('search', 'M20.82,19.23l-3.48-3.49c2.61-3.48,1.9-8.42-1.59-11.03s-8.42-1.9-11.03,1.59c-2.61,3.48-1.9,8.42,1.59,11.03,2.8,2.09,6.64,2.09,9.44,0l3.49,3.49c.44.44,1.15.44,1.59,0,.44-.44.44-1.15,0-1.59h0s0,0,0,0ZM11.06,16.66c-3.1,0-5.61-2.51-5.61-5.61s2.51-5.61,5.61-5.61,5.61,2.51,5.61,5.61c0,3.09-2.51,5.6-5.61,5.61Z', 'Search'/*, 'highlight-button'*/)}
       </div>

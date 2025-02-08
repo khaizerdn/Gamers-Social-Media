@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import axios from 'axios';
 import ScrollRestoration from './utils/scrollrestoration';
+
 import Menu from './features/Menu/Menu';
 import Complementary from './features/Complementary/Complementary';
+
+import ContentProfile from './features/Content/content-profile';
 import ContentHome from './features/Content/content-home';
 import ContentNotifications from './features/Content/content-notifications';
 import ContentTrends from './features/Content/content-trends';
@@ -15,10 +18,12 @@ import ContentTeams from './features/Content/content-teams';
 import ContentClubs from './features/Content/content-clubs';
 import ContentPages from './features/Content/content-pages';
 import ContentSettings from './features/Content/content-settings';
+
 import Login from './features/Login/Login';
 import ForgotPassword from './features/ForgotPassword/forgotpassword';
 import CreateAccount from './features/CreateAccount/createaccount';
 import Verification from './features/Verification/Verification';
+
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -102,6 +107,7 @@ function App() {
                       <Route path="/clubs" element={<ContentClubs />} />
                       <Route path="/pages" element={<ContentPages />} />
                       <Route path="/settings" element={<ContentSettings />} />
+                      <Route path="/:username" element={<ContentProfile />} />
                     </Routes>
                   </div>
                 </div>
