@@ -6,7 +6,7 @@ import ScrollRestoration from './utils/scrollrestoration';
 import Menu from './features/Menu/Menu';
 import Complementary from './features/Complementary/Complementary';
 
-import ContentProfile from './features/Content/content-profile';
+import ContentProfile from './features/Content/UserProfile/UserProfile';
 import ContentHome from './features/Content/content-home';
 import ContentNotifications from './features/Content/content-notifications';
 import ContentTrends from './features/Content/content-trends';
@@ -107,7 +107,7 @@ function App() {
                       <Route path="/clubs" element={<ContentClubs />} />
                       <Route path="/pages" element={<ContentPages />} />
                       <Route path="/settings" element={<ContentSettings />} />
-                      <Route path="/:username" element={<ContentProfile />} />
+                      <Route path="/:username/*" element={<ContentProfile />} />
                     </Routes>
                   </div>
                 </div>

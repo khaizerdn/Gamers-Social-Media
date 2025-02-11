@@ -38,12 +38,18 @@
 
   --color-danger: rgb(229, 115, 115);
 
-  --border-radius: 11px;
+  --border-radius: 14px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 #root {
@@ -64,7 +70,6 @@ body {
   font-weight: var(--font-weight-normal);
   color: var(--color-muted-light);
   background-color: var(--container-color-layer-0);
-  overflow-y: scroll;
 }
 
 .container {
@@ -81,8 +86,10 @@ body {
 
 .container-content {
   display: flex;
+  position: sticky;
+  top: 0;
+  height: 100vh;
   width: 100%;
-  flex-direction: column;
 }
 
 
@@ -97,7 +104,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 10px;
+  margin: 15px;
   overflow-y: auto;
   background-color: var(--container-color-layer-1);
   border-radius: var(--border-radius);
@@ -109,21 +116,26 @@ body {
   display: none;
 }
 
+.content::-webkit-scrollbar {
+  display: none;
+}
+
 .complementary::-webkit-scrollbar {
   display: none;
 }
 
 .content {
   display: flex;
-  box-sizing: border-box;
   flex-direction: column;
-  height: 100%;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  box-sizing: border-box;
+  width: 100%;
+  margin-top: 15px;
+  margin-bottom: 15px;
   overflow-y: auto;
   background-color: var(--container-color-layer-1);
   border-radius: var(--border-radius);
   border: 1px solid var(--container-color-layer-2);
+  position: relative;
 }
 
 .content-menu {
@@ -247,7 +259,7 @@ body {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 10px;
+  margin: 15px;
   overflow-y: auto;
   background-color: var(--container-color-layer-1);
   border-radius: var(--border-radius);
@@ -699,7 +711,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   }
 
   .content {
-    margin-right: 10px;
+    margin-right: 15px;
   }
 
   .container-shortcut .button-text {

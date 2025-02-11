@@ -1,0 +1,93 @@
+.userprofile {
+    display: flex;
+    flex-direction: column;
+}
+
+.userprofile-coverphoto {
+    display: flex;
+    width: 100%;
+    height: 360px;
+    position: relative; /* Ensures absolute positioning works inside */
+    border-radius: var(--border-radius);
+    background-color: var(--container-color-layer-2);
+}
+
+.userprofile-innercontainer {
+    display: flex;
+    position: absolute; /* Positions the container absolutely within the parent */
+    bottom: 0; /* Aligns it to the bottom */
+    width: 100%;
+    padding: 25px;
+    gap: 25px;
+}
+
+.userprofile-profilephoto {
+    display: flex;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background-color: var(--container-color-layer-3);
+}
+
+.userprofile-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--color-primary-light);
+}
+
+.userprofile-firstandlast {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.userprofile-username {
+    font-size: 30px;
+}
+
+.userprofile-main {
+    display: flex;
+    width: 100%;
+}
+
+.userprofile-menu {
+    width: 290px;
+    /* Remove or adjust the fixed viewport height */
+    position: sticky;
+    top: 0; /* If .content has padding at the top, you might adjust this value */
+    overflow-y: auto; /* Enables inner scrolling if needed */
+  }
+
+  .userprofile-sidebar {
+    position: sticky;
+    top: 0;
+    /* Remove fixed heights so the element sizes naturally */
+  }  
+  
+
+  .userprofile-content-container {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    height: 1500px;
+    padding: 10px;
+    background-color: var(--container-color-layer-1);
+}
+
+
+.userprofile-content {
+    display: flex;
+    height: 500px;
+    background-color: var(--container-color-layer-2);
+}
+
+.userprofile-bio {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
+}
