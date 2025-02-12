@@ -91,3 +91,52 @@
     padding: 20px;
     text-align: center;
 }
+
+/* Full-width horizontal menu */
+.horizontal-menu {
+    display: flex;
+    justify-content: space-between; /* Ensures equal spacing */
+    width: 100%;
+
+    border-bottom: 1px solid #333;
+  }
+  
+  /* Each menu item occupies equal space */
+  .menu-item {
+    flex: 1;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-muted-light);
+    padding: 20px 0;
+    position: relative;
+    transition: color 0.2s ease-in-out;
+  }
+  
+  /* Default gray underline for all */
+  .menu-item::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--container-color-layer-3); /* Default gray line */
+  }
+  
+  /* Hover effect */
+  .menu-item:hover {
+    color: var(--color-primary-light);
+  }
+  
+  /* Active state */
+  .menu-item.active {
+    color: var(--color-primary-light);
+  }
+  
+  /* White underline for active tab (replacing gray) */
+  .menu-item.active::after {
+    background-color: var(--color-primary-light);
+  }
+  

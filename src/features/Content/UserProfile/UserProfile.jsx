@@ -33,13 +33,13 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
+
+      {/* Place the horizontal menu below the cover photo */}
+      <Suspense fallback={<div>Loading menu...</div>}>
+        <ProfileMenu />
+      </Suspense>
+
       <div className="userprofile-main">
-        <div className="userprofile-sidebar">
-          <Suspense fallback={<div>Loading menu...</div>}>
-            <ProfileMenu />
-          </Suspense>
-        </div>
-        <div className="hr-vertical"></div>
         <div className="userprofile-content-container">
           <Suspense fallback={<div>Loading content...</div>}>
             <ProfileContent />
