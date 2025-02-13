@@ -5,17 +5,11 @@ import './UserProfile.css';
 const ProfileMenu = () => {
   return (
     <nav className="horizontal-menu">
-      <NavLink to="posts" end className="menu-item">
+      <NavLink to="posts" className="menu-item">
         Posts
       </NavLink>
-      <NavLink to="about" className="menu-item">
-        About
-      </NavLink>
-      <NavLink to="photos" className="menu-item">
-        Photos
-      </NavLink>
-      <NavLink to="videos" className="menu-item">
-        Videos
+      <NavLink to="gallery" className="menu-item">
+        Gallery
       </NavLink>
       <NavLink to="friends" className="menu-item">
         Friends
