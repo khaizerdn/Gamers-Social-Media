@@ -5,7 +5,8 @@ import './UserProfile.css';
 const ProfileMenu = () => {
   return (
     <nav className="horizontal-menu">
-      <NavLink to="posts" className="menu-item">
+      {/* Use "." to keep the URL as /username and add the "end" prop for exact matching */}
+      <NavLink to="." end className="menu-item">
         Posts
       </NavLink>
       <NavLink to="gallery" className="menu-item">
