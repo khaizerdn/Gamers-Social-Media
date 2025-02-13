@@ -26,7 +26,7 @@ const UserProfile = () => {
               <div className="userprofile-firstname">{userData.first_name}</div>
               <div className="userprofile-lastname">{userData.last_name}</div>
             </div>
-            <div className="userprofile-username">{userData.username}</div>
+            <div className="userprofile-username">@{userData.username}</div>
           </div>
           <div className="userprofile-other">
             {/* Additional details */}
@@ -34,7 +34,27 @@ const UserProfile = () => {
         </div>
       </div>
 
-      {/* Place the horizontal menu below the cover photo */}
+      {/* New Section: About Me and Favorite Games */}
+      <div className="userprofile-info-section">
+        <div className="userprofile-aboutme">
+          <div className="container-title">About Me</div>
+          <p>{userData.bio || ""}</p>
+        </div>
+        <div className="userprofile-favoritegames">
+          <div className="container-title">Favorite Games</div>
+          {userData.favoriteGames && userData.favoriteGames.length > 0 ? (
+            <ul>
+              {userData.favoriteGames.map((game, index) => (
+                <li key={index}>{game}</li>
+              ))}
+            </ul>
+          ) : (
+            <p>No favorite games available.</p>
+          )}
+        </div>
+      </div>
+
+      {/* Horizontal menu below the new section */}
       <Suspense fallback={<div>Loading menu...</div>}>
         <ProfileMenu />
       </Suspense>
