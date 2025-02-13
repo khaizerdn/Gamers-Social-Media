@@ -62,6 +62,9 @@
 .userprofile-favoritegames {
   flex: 1;
   padding: 20px;
+  border: 1px solid var(--container-color-layer-3);
+  border-radius: var(--border-radius);
+  min-height: 150px;
 }
 
 /* Title styling inside each container */
@@ -75,7 +78,10 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
-  border-bottom: 1px solid #333;
+  position: sticky;
+  top: 0;
+  border-bottom: 1px solid var(--container-color-layer-3);
+  background-color: var(--container-color-layer-1);
 }
 
 .menu-item {
