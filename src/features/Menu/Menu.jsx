@@ -59,7 +59,7 @@ function Menu() {
                 <div className="shortcut-button-profile-text-realname">
                   {userData.first_name} {userData.last_name}
                 </div>
-                <div className="button-text-other">{userData.username}</div>
+                <div className="button-text-other">@{userData.username}</div>
               </div>
             </>
           ) : (
