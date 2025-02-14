@@ -145,8 +145,14 @@ const UserProfile = () => {
             </button>
           </div>
 
+          {/* Re-added Profile Info */}
           <div className="userprofile-info">
-            {/* ... other profile info ... */}
+            <div className="userprofile-firstandlast">
+              {first_name} {last_name}
+            </div>
+            <div className="userprofile-username">
+              @{username}
+            </div>
           </div>
         </div>
       </div>
