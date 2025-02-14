@@ -23,11 +23,35 @@
 }
 
 .userprofile-profilephoto {
+  position: relative;
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  background-color: var(--container-color-layer-3);
   overflow: hidden;
+  background-color: var(--container-color-layer-3);
+}
+
+.profile-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.upload-photo-btn {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.upload-photo-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .userprofile-info {
