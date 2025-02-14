@@ -22,8 +22,15 @@
   gap: 25px;
 }
 
-.userprofile-profilephoto {
+/* Wrapper for the profile photo and upload button */
+.userprofile-profilephoto-wrapper {
   position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+/* Circular profile photo container */
+.userprofile-profilephoto {
   width: 150px;
   height: 150px;
   border-radius: 50%;
@@ -37,21 +44,34 @@
   object-fit: cover;
 }
 
+/* Upload button positioned at the bottom-right of the circle */
 .upload-photo-btn {
   position: absolute;
-  bottom: 5px;
-  right: 5px;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  border: none;
-  padding: 4px 8px;
-  border-radius: 4px;
+  /* Calculate the button's center: 50% of 150px is 75px + 75/sqrt2 (~53px) = ~128px */
+  top: calc(50% + 53px);
+  left: calc(50% + 53px);
+  transform: translate(-50%, -50%);
+  background: var(--container-color-layer-1);
+  border-radius: 50%;
+  border: transparent;
+  width: 36px;
+  height: 36px;
+  padding: 0;
   cursor: pointer;
-  font-size: 0.8rem;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-photo-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--color-primary-light);
 }
 
 .upload-photo-btn:hover {
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--container-color-layer-2);
 }
 
 .userprofile-info {
@@ -209,10 +229,6 @@
   flex: 1; /* Allow details to take up available space */
 }
 
-.favoritegames-name {
-  font-weight: 700;
-}
-
 /* Horizontal Menu */
 .horizontal-menu {
   display: flex;
@@ -222,7 +238,6 @@
   background-color: var(--container-color-layer-1);
 }
 .favoritegames-name {
-  font-weight: 700;
   color: var(--color-primary-light);
 }
 

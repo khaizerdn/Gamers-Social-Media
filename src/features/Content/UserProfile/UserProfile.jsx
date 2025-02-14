@@ -21,12 +21,12 @@ const CopyButton = ({ text }) => {
     <button className="copy-btn" onClick={handleCopy} title="Copy">
       {copied ? (
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M13.485 1.929a.75.75 0 0 1 1.06 1.06l-8 8a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 1.06-1.06L6 9.439l7.485-7.51z"/>
+          <path d="M13.485 1.929a.75.75 0 0 1 1.06 1.06l-8 8a.75.75 0 0 1-1.06 0l-4-4a.75.75 0 0 1 1.06-1.06L6 9.439l7.485-7.51z" />
         </svg>
       ) : (
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-          <path d="M10 1H2a1 1 0 0 0-1 1v10h1V2h8V1z"/>
-          <path d="M14 4H6a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-1 10H7V6h6v8z"/>
+          <path d="M10 1H2a1 1 0 0 0-1 1v10h1V2h8V1z" />
+          <path d="M14 4H6a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-1 10H7V6h6v8z" />
         </svg>
       )}
     </button>
@@ -34,13 +34,11 @@ const CopyButton = ({ text }) => {
 };
 
 const UserProfile = () => {
-  // All hooks are called at the top, unconditionally.
   const userData = useUserData();
   const [aboutExpanded, setAboutExpanded] = useState(false);
   const [gamesExpanded, setGamesExpanded] = useState(false);
-  const [profilePhotoUrl, setProfilePhotoUrl] = useState('/default-profile.png'); // initial/default image
+  const [profilePhotoUrl, setProfilePhotoUrl] = useState('/default-profile.png');
 
-  // On component mount, fetch the profile photo from the backend.
   useEffect(() => {
     async function fetchProfilePhoto() {
       try {
@@ -59,14 +57,12 @@ const UserProfile = () => {
     fetchProfilePhoto();
   }, []);
 
-  // Early return if userData hasn't loaded yet.
   if (!userData) {
     return <div>Loading user data...</div>;
   }
 
   const { first_name, last_name, username, about, favoriteGames } = userData;
 
-  // Handle file selection and upload
   const handleProfilePhotoUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -80,14 +76,13 @@ const UserProfile = () => {
         credentials: 'include',
       });
       const data = await response.json();
-      // Update the profile photo URL with the signed URL returned from the server
       setProfilePhotoUrl(data.imageUrl);
     } catch (error) {
       console.error('Upload failed:', error);
     }
   };
 
-  // Define inline SVG icons for About Me fields
+  // Inline SVG icons for About Me fields (unchanged)
   const labelIcons = {
     bio: (
       <svg xmlns="http://www.w3.org/2000/svg" className="nav-icon" width="24" height="24" viewBox="0 0 16 16" fill="currentColor">
@@ -125,8 +120,10 @@ const UserProfile = () => {
       {/* Cover Photo + Basic Info */}
       <div className="userprofile-coverphoto">
         <div className="userprofile-innercontainer">
-          <div className="userprofile-profilephoto">
-            <img src={profilePhotoUrl} alt="Profile" className="profile-photo" />
+          <div className="userprofile-profilephoto-wrapper">
+            <div className="userprofile-profilephoto">
+              <img src={profilePhotoUrl} alt="Profile" className="profile-photo" />
+            </div>
             {/* Hidden file input */}
             <input
               type="file"
@@ -135,14 +132,19 @@ const UserProfile = () => {
               accept="image/*"
               onChange={handleProfilePhotoUpload}
             />
-            {/* Overlay Upload Button */}
+            {/* Overlay SVG Upload Button */}
             <button
               className="upload-photo-btn"
               onClick={() => document.getElementById('uploadProfilePhotoInput').click()}
+              aria-label="Upload profile photo"
             >
-              Upload Photo
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 8a4 4 0 100 8 4 4 0 000-8zm0 1.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5z" />
+                <path d="M20 5h-3.17l-1.83-2H9.99L8.17 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h15c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 14H5V7h3.99l1.83-2h4.36l1.83 2H20v12z" />
+              </svg>
             </button>
           </div>
+
           <div className="userprofile-info">
             {/* ... other profile info ... */}
           </div>
