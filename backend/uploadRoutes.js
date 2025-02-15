@@ -130,6 +130,92 @@ router.get("/api/getProfilePhoto", async (req, res) => {
       res.status(500).json({ message: "Server error" });
     }
   });
+
+  // --- In uploadRoutes.js ---
+router.post("/api/uploadCoverPhoto", upload.single("coverPhoto"), async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ message: "No file provided" });
+    }
+
+    // Retrieve the user ID from the cookie named "userId"
+    const userId = req.cookies && req.cookies.userId;
+    if (!userId) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
+
+    // Generate a unique filename
+    const fileExtension = req.file.originalname.split(".").pop();
+    const uniqueFileName = `${uuidv4()}.${fileExtension}`;
+
+    // Resize the image to typical cover dimensions (e.g., 1200x300)
+    const resizedImageBuffer = await sharp(req.file.buffer)
+      .resize(1200, 300, { fit: "cover" })
+      .toBuffer();
+
+    // Upload to S3
+    const params = {
+      Bucket: bucketName,
+      Key: uniqueFileName,
+      Body: resizedImageBuffer,
+      ContentType: req.file.mimetype,
+    };
+
+    await s3.send(new PutObjectCommand(params));
+
+    // Save the file key in the database for the cover photo
+    await pool.query("UPDATE users SET coverPhoto = ? WHERE id = ?", [uniqueFileName, userId]);
+
+    // Generate a signed URL valid for 1 hour
+    const getObjectParams = { Bucket: bucketName, Key: uniqueFileName };
+    const signedUrl = await getSignedUrl(
+      s3,
+      new GetObjectCommand(getObjectParams),
+      { expiresIn: 3600 }
+    );
+
+    res.json({ imageUrl: signedUrl, key: uniqueFileName });
+  } catch (error) {
+    console.error("Error uploading cover photo:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+router.get("/api/getCoverPhoto", async (req, res) => {
+  try {
+    // Retrieve the user ID from the cookie named "userId"
+    const userId = req.cookies && req.cookies.userId;
+    if (!userId) {
+      return res.status(401).json({ message: "User not authenticated" });
+    }
+
+    // Query the database for the user's coverPhoto key
+    const [rows] = await pool.query("SELECT coverPhoto FROM users WHERE id = ?", [userId]);
+    if (rows.length === 0) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    const coverPhotoKey = rows[0].coverPhoto;
+    if (!coverPhotoKey) {
+      // No cover photo uploaded; return a default URL (or null)
+      return res.json({ imageUrl: '/default-cover.png' });
+    }
+
+    // Generate a signed URL
+    const getObjectParams = { Bucket: bucketName, Key: coverPhotoKey };
+    const signedUrl = await getSignedUrl(
+      s3,
+      new GetObjectCommand(getObjectParams),
+      { expiresIn: 3600 }
+    );
+
+    res.json({ imageUrl: signedUrl });
+  } catch (error) {
+    console.error("Error retrieving cover photo:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
   
 
 module.exports = router;

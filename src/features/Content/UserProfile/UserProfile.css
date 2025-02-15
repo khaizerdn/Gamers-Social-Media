@@ -34,6 +34,7 @@
   width: 150px;
   height: 150px;
   border-radius: 50%;
+  border: 5px solid var(--container-color-layer-1);
   overflow: hidden;
   background-color: var(--container-color-layer-3);
 }
@@ -85,12 +86,11 @@
   display: flex;
   gap: 10px;
   font-weight: 700;
-  font-size: 40px;
+  font-size: var(--font-size-4);
 }
 
 .userprofile-username {
-  font-size: 30px;
-  color: var(--color-muted-light);
+  font-size: var(--font-size-3);
 }
 
 /* Info Section for About Me and Favorite Games */
@@ -333,5 +333,32 @@
   vertical-align: middle;
 }
 
+/* New Edit Cover Photo Button */
+.edit-cover-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: var(--container-color-layer-1);
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  z-index: 2;
+  font-size: var(--font-size-1);
+  color: var(--color-primary-light);
+}
+
+.edit-cover-btn svg {
+  width: 16px;
+  height: 16px;
+  fill: var(--color-primary-light);
+}
+
+.edit-cover-btn:hover {
+  background: var(--container-color-layer-2);
+}
 
 

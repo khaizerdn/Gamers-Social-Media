@@ -38,6 +38,7 @@ const UserProfile = () => {
   const [aboutExpanded, setAboutExpanded] = useState(false);
   const [gamesExpanded, setGamesExpanded] = useState(false);
   const [profilePhotoUrl, setProfilePhotoUrl] = useState('/default-profile.png');
+  const [coverPhotoUrl, setCoverPhotoUrl] = useState('/default-cover.png');
 
   useEffect(() => {
     async function fetchProfilePhoto() {
@@ -55,6 +56,24 @@ const UserProfile = () => {
       }
     }
     fetchProfilePhoto();
+  }, []);
+
+  useEffect(() => {
+    async function fetchCoverPhoto() {
+      try {
+        const response = await fetch(`${API_URL}/api/getCoverPhoto`, {
+          method: 'GET',
+          credentials: 'include',
+        });
+        const data = await response.json();
+        if (data.imageUrl) {
+          setCoverPhotoUrl(data.imageUrl);
+        }
+      } catch (error) {
+        console.error("Error fetching cover photo:", error);
+      }
+    }
+    fetchCoverPhoto();
   }, []);
 
   if (!userData) {
@@ -79,6 +98,25 @@ const UserProfile = () => {
       setProfilePhotoUrl(data.imageUrl);
     } catch (error) {
       console.error('Upload failed:', error);
+    }
+  };
+
+  const handleCoverPhotoUpload = async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('coverPhoto', file);
+
+    try {
+      const response = await fetch(`${API_URL}/api/uploadCoverPhoto`, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include',
+      });
+      const data = await response.json();
+      setCoverPhotoUrl(data.imageUrl);
+    } catch (error) {
+      console.error("Cover photo upload failed:", error);
     }
   };
 
@@ -118,13 +156,13 @@ const UserProfile = () => {
   return (
     <div className="userprofile">
       {/* Cover Photo + Basic Info */}
-      <div className="userprofile-coverphoto">
+      <div className="userprofile-coverphoto" style={{ backgroundImage: `url(${coverPhotoUrl})` }}>
         <div className="userprofile-innercontainer">
           <div className="userprofile-profilephoto-wrapper">
             <div className="userprofile-profilephoto">
               <img src={profilePhotoUrl} alt="Profile" className="profile-photo" />
             </div>
-            {/* Hidden file input */}
+            {/* Hidden file input for profile photo */}
             <input
               type="file"
               id="uploadProfilePhotoInput"
@@ -132,7 +170,7 @@ const UserProfile = () => {
               accept="image/*"
               onChange={handleProfilePhotoUpload}
             />
-            {/* Overlay SVG Upload Button */}
+            {/* Overlay SVG Upload Button for profile photo */}
             <button
               className="upload-photo-btn"
               onClick={() => document.getElementById('uploadProfilePhotoInput').click()}
@@ -155,6 +193,26 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
+
+        {/* --- New Cover Photo Upload --- */}
+        {/* Hidden file input for cover photo */}
+        <input
+          type="file"
+          id="uploadCoverPhotoInput"
+          style={{ display: 'none' }}
+          accept="image/*"
+          onChange={handleCoverPhotoUpload}
+        />
+        {/* Edit Cover Photo Button */}
+        <button
+          className="edit-cover-btn"
+          onClick={() => document.getElementById('uploadCoverPhotoInput').click()}
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M4 17.25V21h3.75l9.06-9.06-3.75-3.75L4 17.25zM20.71 7.04a1 1 0 000-1.41l-2.34-2.34a1 1 0 00-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
+          </svg>
+          Edit cover photo
+        </button>
       </div>
 
       {/* About Me & Favorite Games Section */}
