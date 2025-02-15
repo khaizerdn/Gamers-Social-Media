@@ -4,29 +4,33 @@
   flex-direction: column;
 }
 
-/* Cover Photo and Basic Info */
+/* Cover Photo */
 .userprofile-coverphoto {
-  display: flex;
   width: 100%;
   height: 360px;
-  position: relative;
   background-color: var(--container-color-layer-2);
-}
-
-.userprofile-innercontainer {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding: 25px;
-  gap: 25px;
-}
-
-/* Wrapper for the profile photo and upload button */
-.userprofile-profilephoto-wrapper {
+  background-size: cover;
+  background-position: center;
   position: relative;
+}
+
+/* Basic Info Section (placed below the cover photo) */
+.userprofile-basicinfo {
+  position: relative;
+  width: 100%;
+  background-color: var(--container-color-layer-1);
+  padding: 20px 25px;
+  /* Height is determined by its text content */
+}
+
+/* Profile photo wrapper is absolutely positioned relative to basic info */
+.userprofile-profilephoto-wrapper {
+  position: absolute;
+  bottom: 0; /* Align bottom of profile pic with bottom of basic info container */
+  left: 25px;
   width: 150px;
   height: 150px;
+  z-index: 1;
 }
 
 /* Circular profile photo container */
@@ -45,19 +49,17 @@
   object-fit: cover;
 }
 
-/* Upload button positioned at the bottom-right of the circle */
+/* Upload button for profile photo */
 .upload-photo-btn {
   position: absolute;
-  /* Calculate the button's center: 50% of 150px is 75px + 75/sqrt2 (~53px) = ~128px */
   top: calc(50% + 53px);
   left: calc(50% + 53px);
   transform: translate(-50%, -50%);
   background: var(--container-color-layer-1);
   border-radius: 50%;
-  border: transparent;
+  border: none;
   width: 36px;
   height: 36px;
-  padding: 0;
   cursor: pointer;
   z-index: 2;
   display: flex;
@@ -75,34 +77,36 @@
   background: var(--container-color-layer-2);
 }
 
+/* Profile Basic Info (Name and Username) */
+/* Add left margin to make room for the profile pic */
 .userprofile-info {
+  margin-left: 180px; /* 150px width + spacing */
   display: flex;
   flex-direction: column;
   justify-content: center;
-  color: var(--color-primary-light);
 }
 
 .userprofile-firstandlast {
-  display: flex;
-  gap: 10px;
   font-weight: 700;
-  font-size: var(--font-size-4);
+  font-size: 28px;
+  color: var(--color-primary-light);
 }
 
 .userprofile-username {
-  font-size: var(--font-size-3);
+  font-size: 16px;
+  color: var(--color-muted-light);
 }
 
-/* Info Section for About Me and Favorite Games */
+/* About Me & Favorite Games Section */
 .userprofile-info-section {
+  margin-top: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
   gap: 20px;
   background-color: var(--container-color-layer-1);
   padding: 20px;
 }
 
+/* Ensure equal widths for About Me and Favorite Games */
 .userprofile-aboutme,
 .userprofile-favoritegames {
   flex: 1;
@@ -116,36 +120,35 @@
 
 /* Collapsible Container with hidden scrollbars */
 .collapsible-container {
-  height: 150px;           /* Default height */
-  overflow: hidden;        /* Hide overflow when collapsed */
+  height: 150px;
+  overflow: hidden;
   transition: height 0.3s ease;
   border-bottom: 1px solid var(--container-color-layer-3);
 }
 .collapsible-container.expanded {
-  height: 250px;           /* Expanded height */
-  overflow-y: auto;        /* Enable scrolling when needed */
+  height: 250px;
+  overflow-y: auto;
 }
 
-/* Hide scrollbars for WebKit, Firefox, and IE/Edge */
 .collapsible-container::-webkit-scrollbar {
   display: none;
 }
 .collapsible-container {
-  -ms-overflow-style: none;  /* IE and Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 .see-more-btn {
-  align-self: flex-end; /* Changed from flex-start to flex-end */
+  align-self: flex-end;
   background-color: transparent;
   color: var(--color-primary);
   padding: 6px 12px;
   border: none;
   border-radius: var(--border-radius);
   cursor: pointer;
-  position: relative;
   font-size: 1rem;
   transition: color 0.2s ease;
+  position: relative;
 }
 
 .see-more-btn::after {
@@ -168,7 +171,6 @@
   transform: scaleX(1);
 }
 
-
 /* About Me Cards */
 .aboutme-cards {
   display: flex;
@@ -178,18 +180,14 @@
 
 .aboutme-card {
   display: flex;
-  width: 100%;
-  box-sizing: border-box;
   align-items: center;
   min-height: 48px;
   border-radius: var(--border-radius);
   border: 1px solid transparent;
 }
 
-/* Fixed width for label and gap between title and data */
 .aboutme-label {
   display: flex;
-  box-sizing: border-box;
   justify-content: center;
   align-items: center;
   min-width: 48px;
@@ -209,7 +207,7 @@
 .favoritegames-item {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Ensure space between details and the copy button */
+  justify-content: space-between;
   background-color: var(--container-color-layer-1);
   padding: 8px;
   border-radius: var(--border-radius);
@@ -217,26 +215,17 @@
 }
 
 .favoritegames-icon {
-  display: flex;
-  box-sizing: border-box;
-  justify-content: center;
-  align-items: center;
   width: 38px;
   height: 38px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .favoritegames-details {
-  flex: 1; /* Allow details to take up available space */
+  flex: 1;
 }
 
-/* Horizontal Menu */
-.horizontal-menu {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  border-bottom: 1px solid var(--container-color-layer-3);
-  background-color: var(--container-color-layer-1);
-}
 .favoritegames-name {
   color: var(--color-primary-light);
 }
@@ -270,6 +259,15 @@
 
 .copy-btn:hover svg {
   fill: var(--color-primary-light);
+}
+
+/* Horizontal Menu */
+.horizontal-menu {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid var(--container-color-layer-3);
+  background-color: var(--container-color-layer-1);
 }
 
 .menu-item {
@@ -310,9 +308,9 @@
 
 .userprofile-content-container {
   display: flex;
-  width: 100%;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
   padding: 10px;
   background-color: var(--container-color-layer-1);
 }
@@ -333,7 +331,7 @@
   vertical-align: middle;
 }
 
-/* New Edit Cover Photo Button */
+/* Edit Cover Photo Button */
 .edit-cover-btn {
   position: absolute;
   bottom: 20px;
@@ -360,5 +358,3 @@
 .edit-cover-btn:hover {
   background: var(--container-color-layer-2);
 }
-
-

@@ -155,46 +155,8 @@ const UserProfile = () => {
 
   return (
     <div className="userprofile">
-      {/* Cover Photo + Basic Info */}
+      {/* Cover Photo */}
       <div className="userprofile-coverphoto" style={{ backgroundImage: `url(${coverPhotoUrl})` }}>
-        <div className="userprofile-innercontainer">
-          <div className="userprofile-profilephoto-wrapper">
-            <div className="userprofile-profilephoto">
-              <img src={profilePhotoUrl} alt="Profile" className="profile-photo" />
-            </div>
-            {/* Hidden file input for profile photo */}
-            <input
-              type="file"
-              id="uploadProfilePhotoInput"
-              style={{ display: 'none' }}
-              accept="image/*"
-              onChange={handleProfilePhotoUpload}
-            />
-            {/* Overlay SVG Upload Button for profile photo */}
-            <button
-              className="upload-photo-btn"
-              onClick={() => document.getElementById('uploadProfilePhotoInput').click()}
-              aria-label="Upload profile photo"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 8a4 4 0 100 8 4 4 0 000-8zm0 1.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5z" />
-                <path d="M20 5h-3.17l-1.83-2H9.99L8.17 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h15c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 14H5V7h3.99l1.83-2h4.36l1.83 2H20v12z" />
-              </svg>
-            </button>
-          </div>
-
-          {/* Re-added Profile Info */}
-          <div className="userprofile-info">
-            <div className="userprofile-firstandlast">
-              {first_name} {last_name}
-            </div>
-            <div className="userprofile-username">
-              @{username}
-            </div>
-          </div>
-        </div>
-
-        {/* --- New Cover Photo Upload --- */}
         {/* Hidden file input for cover photo */}
         <input
           type="file"
@@ -213,6 +175,45 @@ const UserProfile = () => {
           </svg>
           Edit cover photo
         </button>
+      </div>
+
+      {/* Basic Info Section (positioned below cover photo) */}
+      <div className="userprofile-basicinfo">
+        {/* Profile Photo (absolutely positioned) */}
+        <div className="userprofile-profilephoto-wrapper">
+          <div className="userprofile-profilephoto">
+            <img src={profilePhotoUrl} alt="Profile" className="profile-photo" />
+          </div>
+          {/* Hidden file input for profile photo */}
+          <input
+            type="file"
+            id="uploadProfilePhotoInput"
+            style={{ display: 'none' }}
+            accept="image/*"
+            onChange={handleProfilePhotoUpload}
+          />
+          {/* Overlay SVG Upload Button for profile photo */}
+          <button
+            className="upload-photo-btn"
+            onClick={() => document.getElementById('uploadProfilePhotoInput').click()}
+            aria-label="Upload profile photo"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 8a4 4 0 100 8 4 4 0 000-8zm0 1.5a2.5 2.5 0 110 5 2.5 2.5 0 010-5z" />
+              <path d="M20 5h-3.17l-1.83-2H9.99L8.17 5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h15c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 14H5V7h3.99l1.83-2h4.36l1.83 2H20v12z" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Name & Username */}
+        <div className="userprofile-info">
+          <div className="userprofile-firstandlast">
+            {first_name} {last_name}
+          </div>
+          <div className="userprofile-username">
+            @{username}
+          </div>
+        </div>
       </div>
 
       {/* About Me & Favorite Games Section */}
