@@ -15,14 +15,14 @@ const ProfileContent = () => {
     case "posts":
       content = <div>Posts content goes here</div>;
       break;
-    case "about":
-      content = <div>About content goes here</div>;
+    case "gallery":
+      content = <div>Gallery content goes here</div>;
       break;
-    case "photos":
-      content = <div>Photos content goes here</div>;
+    case "friends":
+      content = <div>Friends content goes here</div>;
       break;
-    case "videos":
-      content = <div>Videos content goes here</div>;
+    case "following":
+      content = <div>Following content goes here</div>;
       break;
     default:
       content = <div>Select a tab to view content.</div>;
