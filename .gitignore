@@ -37,3 +37,7 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+/backend/
+gd_database.sql
+Note.txt
